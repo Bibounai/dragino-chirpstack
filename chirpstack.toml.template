@@ -1,0 +1,25 @@
+[logging]
+  level = "info"
+
+[postgresql]
+  dsn = "${DATABASE_URL}"
+  max_open_connections = 10
+  min_idle_connections = 0
+
+[redis]
+  servers = ["${REDIS_URL}"]
+  cluster = false
+
+[network]
+  net_id = "000000"
+  enabled_regions = ["eu868"]
+
+[api]
+  bind = "0.0.0.0:8080"
+  secret = "${API_SECRET}"
+
+[gateway_backend]
+  enabled = "basic_station"
+
+  [gateway_backend.basic_station]
+    bind = "0.0.0.0:3001"
