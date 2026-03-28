@@ -18,8 +18,24 @@
   bind = "0.0.0.0:8080"
   secret = "${API_SECRET}"
 
-[gateway_backend]
-  enabled = "basic_station"
+[[regions]]
+  name = "eu868"
+  common_name = "EU868"
 
-  [gateway_backend.basic_station]
-    bind = "0.0.0.0:3001"
+  [regions.network]
+    installation_margin = 10
+    rx_window = 0
+    rx1_delay = 1
+    rx1_dr_offset = 0
+    rx2_dr = 0
+    rx2_frequency = 869525000
+    downlink_tx_power = -1
+
+  [regions.gateway]
+    force_gws_private = false
+
+    [regions.gateway.backend]
+      enabled = "basic_station"
+
+      [regions.gateway.backend.basic_station]
+        bind = "0.0.0.0:3001"
