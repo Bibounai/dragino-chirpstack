@@ -5,7 +5,6 @@ set -e
 envsubst < /etc/chirpstack/chirpstack.toml.template > /etc/chirpstack/chirpstack.toml
 
 # Remove the template so ChirpStack only loads the valid .toml file
-# (ChirpStack -c /etc/chirpstack loads ALL files in the directory)
 rm /etc/chirpstack/chirpstack.toml.template
 
 # Inject $PORT into nginx config (only $PORT, leave nginx variables intact)

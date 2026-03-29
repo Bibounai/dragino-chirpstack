@@ -19,7 +19,11 @@
   secret = "${API_SECRET}"
 
 [integration]
-  enabled = []
+  enabled = ["mqtt"]
+
+  [integration.mqtt]
+    server = "tcp://localhost:1883/"
+    json = true
 
 [[regions]]
   id = "eu868"
@@ -30,10 +34,15 @@
     force_gws_private = false
 
     [regions.gateway.backend]
-      enabled = "basic_station"
+      enabled = "mqtt"
 
-      [regions.gateway.backend.basic_station]
-        bind = "0.0.0.0:3001"
+      [regions.gateway.backend.mqtt]
+        topic_prefix = "eu868"
+        server = "tcp://localhost:1883"
+        qos = 0
+        clean_session = false
+        client_id = ""
+        keep_alive_interval = "30s"
 
     [[regions.gateway.channels]]
       frequency = 868100000
