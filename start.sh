@@ -10,6 +10,10 @@ rm /etc/chirpstack/chirpstack.toml.template
 # Inject $PORT into nginx config (only $PORT, leave nginx variables intact)
 envsubst '$PORT' < /etc/nginx/nginx.conf.template > /etc/nginx/nginx.conf
 
+# Create required directories for Mosquitto
+mkdir -p /run/mosquitto
+chown mosquitto:mosquitto /run/mosquitto
+
 # Create extensions if they don't exist (no schema reset)
 echo "Ensuring PostgreSQL extensions exist..."
 psql "${DATABASE_URL}" <<EOSQL || true
