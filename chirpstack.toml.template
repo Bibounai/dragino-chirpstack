@@ -19,10 +19,7 @@
   secret = "${API_SECRET}"
 
 [integration]
-  enabled = ["mqtt"]
-  [integration.mqtt]
-    server = "tcp://localhost:1883/"
-    json = true
+  enabled = []
 
 [[regions]]
   id = "eu868"
