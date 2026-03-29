@@ -7,6 +7,7 @@ RUN apt-get update && apt-get install -y \
     supervisor \
     gettext-base \
     postgresql-client \
+    mosquitto \
     && rm -rf /var/lib/apt/lists/*
 
 # Copy ChirpStack binary from official image
