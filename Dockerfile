@@ -2,12 +2,18 @@ FROM chirpstack/chirpstack:4 AS chirpstack-src
 
 FROM debian:12-slim
 
+# Install base packages + Mosquitto from official repo (for MQTT v5 support)
 RUN apt-get update && apt-get install -y \
     nginx \
     supervisor \
     gettext-base \
     postgresql-client \
-    mosquitto \
+    wget \
+    gnupg \
+    && mkdir -p /etc/apt/keyrings \
+    && wget -qO /etc/apt/keyrings/mosquitto.asc https://repo.mosquitto.org/debian/mosquitto-repo.gpg.key \
+    && echo "deb [signed-by=/etc/apt/keyrings/mosquitto.asc] https://repo.mosquitto.org/debian bookworm main" > /etc/apt/sources.list.d/mosquitto.list \
+    && apt-get update && apt-get install -y mosquitto \
     && rm -rf /var/lib/apt/lists/*
 
 # Copy ChirpStack binary from official image
