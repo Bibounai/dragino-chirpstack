@@ -11,9 +11,9 @@ http {
     server {
         listen ${PORT};
 
-        # MQTT over WebSocket (LPS8N MQTT Forwarder connects here)
-        location /mqtt {
-            proxy_pass http://127.0.0.1:9001;
+        # Basic Station WebSocket (LPS8N connects here → Gateway Bridge)
+        location /gws/ {
+            proxy_pass http://127.0.0.1:3001/;
             proxy_http_version 1.1;
             proxy_set_header Upgrade $http_upgrade;
             proxy_set_header Connection $connection_upgrade;
