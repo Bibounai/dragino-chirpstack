@@ -13,9 +13,10 @@ RUN apt-get update && apt-get install -y \
 # Copy ChirpStack binary from official image
 COPY --from=chirpstack-src /usr/bin/chirpstack /usr/local/bin/chirpstack
 
-# Copy our config template
+# Copy our config files
 COPY chirpstack.toml.template /etc/chirpstack/chirpstack.toml.template
 COPY nginx.conf.template /etc/nginx/nginx.conf.template
+COPY mosquitto.conf /etc/mosquitto/mosquitto.conf
 COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 COPY start.sh /start.sh
 RUN chmod +x /start.sh
