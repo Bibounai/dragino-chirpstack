@@ -20,6 +20,10 @@ type="basic_station"
   frequency_min=863000000
   frequency_max=870000000
 
+  # Public URI announced to gateways via router-info response
+  # Must be wss:// since Render terminates TLS
+  router_info_uri="wss://dragino-chirpstack.onrender.com:443"
+
   [[backend.basic_station.concentrators]]
     [backend.basic_station.concentrators.multi_sf]
     frequencies=[
